@@ -1,0 +1,12 @@
+.errore {
+	visibility:visible;/*impostato a nascosto*/ /*hidden*/
+	z-index: 99;/*sopra tutti gli altri div*/
+  	color: red;
+}
+.fine {
+	font-size: 50px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: 100px;
+}
