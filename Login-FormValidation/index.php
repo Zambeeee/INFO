@@ -38,8 +38,8 @@
   {
     $cognome = trim($c);
     $cognome = stripslashes($cognome);
-    $cognome = htmlspecialchars($cognome);
-    if (!preg_match("/^[a-zA-Z]{2,15}$/", $cognome)) {
+    // $cognome = htmlspecialchars($cognome);
+    if (!preg_match("/^[a-zA-Z' ]{2,15}+$/", $cognome)) {
       $cognomeEr = "Inserire un cognome valido.";
     } else {
       $cognomeEr = "";
@@ -54,7 +54,7 @@
     $email = stripslashes($email);
     $email = htmlspecialchars($email);
     // controllo dei requisiti per l'email; if (preg_match("/^[a-zA-Z0-9._-]+@[a-zA-Z0-9-]+\.[a-zA-Z.]{2,5}$/", $email));
-    if (!preg_match("/^[a-zA-Z0-9._-]+@[a-zA-Z0-9-]+\.[a-zA-Z.]{2,5}$/", $email)) {
+    if (!preg_match("/^[a-zA-Z0-9._-]+@[a-zA-Z0-9-]+\.[a-zA-Z.]{2,6}$/", $email)) {
       $emailEr = "Inserire un'email valida.";
     } else {
       $emailEr = "";
@@ -67,8 +67,8 @@
   {
     $indirizzo = trim($i);
     $indirizzo = stripslashes($i);
-    $indirizzo = htmlspecialchars($indirizzo);
-    if (!preg_match("/^[a-zA-Z0-9]{2,100}$/", $indirizzo)) {
+    //$indirizzo = htmlspecialchars($indirizzo);
+    if (!preg_match("/^[a-zA-Z0-9' ]{2,100}+$/", $indirizzo)) {
       $indirizzoEr = "Inserire un indirizzo valido.";
     } else {
       $indirizzoEr = "";
@@ -77,7 +77,7 @@
   }
 
   // funzione check cellulare
-  function checkCellulare(&$count,&$cellulare, &$cellulareEr, &$cell)
+  function checkCellulare(&$cellulare, &$cellulareEr, &$cell)
   {
     $cellulare = trim($cell);
     $cellulare = stripslashes($cellulare);
@@ -87,7 +87,6 @@
     } else {
       if (preg_match('/^[0-9]{10}+$/', $cellulare)) {
         $cellulareEr = "";
-        $count++;
       } else {
         $cellulareEr = "Inserire un numero di cellulare valido.";
       }
@@ -100,7 +99,7 @@
     $username = trim($u);
     $username = stripslashes($username);
     $username = htmlspecialchars($username);
-    if (!preg_match("/^[a-zA-Z0-9._-]{2,15}$/", $username)) {
+    if(!preg_match("/^[a-zA-Z0-9-_.]{2,15}+$/" , $username)) {
       $usernameEr = "Inserire un username valido.";
     } else {
       $usernameEr = "";
@@ -114,7 +113,7 @@
     $password = trim($p);
     $password = stripslashes($password);
     $password = htmlspecialchars($password);
-    if (!preg_match("/^[a-zA-Z0-9._-]{2,15}$/", $password)) {
+    if (!preg_match("/^[a-zA-Z0-9._-]{8,15}$/", $password)) {
       $passwordEr = "Inserire una password valida.";
     } else {
       $passwordEr = "";
@@ -124,16 +123,16 @@
 
   // controlli if
   if (isset($_POST["submit"])) {
-    checkNome($count,$nome, $nomeEr, $_POST["nome"]);
-    checkCognome($count,$cognome, $cognomeEr, $_POST["cognome"]);
-    checkEmail($count,$email, $emailEr, $_POST["email"]);
-    checkIndirizzo($count,$indirizzo, $indirizzoEr, $_POST["indirizzo"]);
-    checkCellulare($count,$cellulare, $cellulareEr, $_POST["cellulare"]);
-    checkUsername($count,$username, $usernameEr, $_POST["username"]);
-    checkPassword($count,$password, $passwordEr, $_POST["password"]);
+    checkNome($count,$nome,$nomeEr,$_POST["nome"]);
+    checkCognome($count,$cognome,$cognomeEr,$_POST["cognome"]);
+    checkEmail($count,$email,$emailEr,$_POST["email"]);
+    checkIndirizzo($count,$indirizzo,$indirizzoEr,$_POST["indirizzo"]);
+    checkCellulare($cellulare,$cellulareEr,$_POST["cellulare"]);
+    checkUsername($count,$username,$usernameEr,$_POST["username"]);
+    checkPassword($count,$password,$passwordEr,$_POST["password"]);
   }
 
-  if($count!=7) {
+  if($count!=6) {
 
   ?>
   
@@ -144,13 +143,11 @@
       <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
 
         <label for="nome" type="testo" class="titoletto">Nome</label><br>
-        <input type="text" id="nome" name="nome" placeholder="Inserisci il nome" class="tasto">
-        <span class="errore">
-          <font color="red"><?php echo $nomeEr; ?></font>
-        </span><br><br>
+        <input type="text" id="nome" name="nome" value="<?php echo $nome; ?>" placeholder="Inserisci il nome" class="tasto">
+        <span class="errore"><font color="red"><?php echo $nomeEr; ?></font></span><br><br>
 
         <label for="cognome" type="testo" class="titoletto">Cognome</label><br>
-        <input type="text" id="cognome" name="cognome" placeholder="Inserisci il cognome" class="tasto">
+        <input type="text" id="cognome" name="cognome" value="<?php echo $cognome; ?>" placeholder="Inserisci il cognome" class="tasto">
         <span class="errore">
           <font color="red"><?php echo $cognomeEr; ?></font>
         </span><br><br>
@@ -160,31 +157,31 @@
         <input type="date" id="data" name="data" placeholder="Inserisci la data" class="tasto"><br><br>
 
         <label for="email" type="testo" class="titoletto">Email</label><br>
-        <input type="text" id="email" name="email" placeholder="Inserisci l'email" class="tasto">
+        <input type="text" id="email" name="email" value="<?php echo $email; ?>" placeholder="Inserisci l'email" class="tasto">
         <span class="errore">
           <font color="red"><?php echo $emailEr; ?></font>
         </span><br><br>
 
         <label for="indirizzo" type="testo" class="titoletto">Indirizzo</label><br>
-        <input type="text" id="indirizzo" name="indirizzo" placeholder="Inserisci l'indirizzo" class="tasto">
+        <input type="text" id="indirizzo" name="indirizzo" value="<?php echo $indirizzo; ?>" placeholder="Inserisci l'indirizzo" class="tasto">
         <span class="errore">
           <font color="red"><?php echo $indirizzoEr; ?></font>
         </span><br><br>
 
         <label for="cellulare" type="testo" class="titoletto">Cellulare</label><br>
-        <input type="text" id="cellulare" name="cellulare" placeholder="Inserisci il numero di cellulare" class="tasto">
+        <input type="text" id="cellulare" name="cellulare" value="<?php echo $cellulare; ?>" placeholder="Inserisci il numero di cellulare" class="tasto">
         <span class="errore">
           <font color="red"><?php echo $cellulareEr; ?></font>
         </span><br><br>
 
         <label for="username" type="testo" class="titoletto">Username</label><br>
-        <input type="text" id="username" name="username" placeholder="Inserisci un username" class="tasto">
+        <input type="text" id="username" name="username" value="<?php echo $username; ?>" placeholder="Inserisci un username" class="tasto">
         <span class="errore">
           <font color="red"><?php echo $usernameEr; ?></font>
         </span><br><br>
 
         <label for="password" type="testo" class="titoletto">Password</label><br>
-        <input type="password" id="password" name="password" placeholder="Inserisci la password" class="tasto">
+        <input type="password" id="password" name="password" value="<?php echo $password; ?>" placeholder="Inserisci la password" class="tasto">
         <span class="errore">
           <font color="red"><?php echo $passwordEr; ?></font>
         </span><br><br>
