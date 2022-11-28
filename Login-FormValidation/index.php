@@ -16,6 +16,9 @@
   $nomeEr = $cognomeEr = $emailEr = $indirizzoEr = '';
   $cellulareEr = $usernameEr = $passwordEr = '';
 
+  $nome = $cognome = $email = $indirizzo = '';
+  $cellulare = $username = $password = '';
+
   $count = 0;
 
   // FUNZIONI GENERALI
@@ -143,7 +146,7 @@
       <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
 
         <label for="nome" type="testo" class="titoletto">Nome</label><br>
-        <input type="text" id="nome" name="nome" value="<?php echo $nome; ?>" placeholder="Inserisci il nome" class="tasto">
+        <input type="text" id="nome" name="nome" value="<?php echo $nome; ?>" placeholder="Inserisci il nome">
         <span class="errore"><font color="red"><?php echo $nomeEr; ?></font></span><br><br>
 
         <label for="cognome" type="testo" class="titoletto">Cognome</label><br>
