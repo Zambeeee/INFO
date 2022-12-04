@@ -23,8 +23,7 @@
 
   // FUNZIONI GENERALI
   // funzione check nome
-  function checkNome(&$count,&$nome, &$nomeEr, &$n)
-  {
+  function checkNome(&$count,&$nome, &$nomeEr, &$n) {
     $nome = trim($n);
     $nome = stripslashes($nome);
     $nome = htmlspecialchars($nome);
@@ -37,8 +36,7 @@
   }
 
   // funzione check cognome
-  function checkCognome(&$count,&$cognome, &$cognomeEr, &$c)
-  {
+  function checkCognome(&$count,&$cognome, &$cognomeEr, &$c) {
     $cognome = trim($c);
     $cognome = stripslashes($cognome);
     // $cognome = htmlspecialchars($cognome);
@@ -51,8 +49,7 @@
   }
 
   // funzione check email
-  function checkEmail(&$count,&$email, &$emailEr, &$e)
-  {
+  function checkEmail(&$count,&$email, &$emailEr, &$e) {
     $email = trim($e);
     $email = stripslashes($email);
     $email = htmlspecialchars($email);
@@ -66,8 +63,7 @@
   }
 
   // funzione check indirizzo
-  function checkIndirizzo(&$count,&$indirizzo, &$indirizzoEr, &$i)
-  {
+  function checkIndirizzo(&$count,&$indirizzo, &$indirizzoEr, &$i) {
     $indirizzo = trim($i);
     $indirizzo = stripslashes($i);
     //$indirizzo = htmlspecialchars($indirizzo);
@@ -80,8 +76,7 @@
   }
 
   // funzione check cellulare
-  function checkCellulare(&$cellulare, &$cellulareEr, &$cell)
-  {
+  function checkCellulare(&$cellulare, &$cellulareEr, &$cell) {
     $cellulare = trim($cell);
     $cellulare = stripslashes($cellulare);
     $cellulare = htmlspecialchars($cellulare);
@@ -97,8 +92,7 @@
   }
 
   // funzione check username
-  function checkUsername(&$count,&$username, &$usernameEr, &$u)
-  {
+  function checkUsername(&$count,&$username, &$usernameEr, &$u) {
     $username = trim($u);
     $username = stripslashes($username);
     $username = htmlspecialchars($username);
@@ -111,8 +105,7 @@
   }
 
   // funzione check password
-  function checkPassword(&$count,&$password, &$passwordEr, &$p)
-  {
+  function checkPassword(&$count,&$password, &$passwordEr, &$p) {
     $password = trim($p);
     $password = stripslashes($password);
     $password = htmlspecialchars($password);
