@@ -13,54 +13,65 @@
 </head>
 <body>
 <?php
-  // Variabili errore
-  $usernameEr = $passwordEr = '';
-
-  // Variabili dati
-  $username = $password = '';
-
-  // --
-  $coutUs = $coutPs = '';
-
-  if(isset($_POST['submit'])) {
-    // Funzioni
-    $coutUs = checkUsername($username, $usernameEr, $_POST['username']);
-    $coutPs = checkPassword($password, $passwordEr, $_POST['password']);
-
-    if($coutUs == 1 && $coutPs == 1) {
-      if($_POST['username'] == 'Marco') {
-        $usernameEr = '';
-        if($_POST['password'] == 'Prova_01') {
-          $passwordEr = '';
-          $_SESSION['username'] = $_POST['username'];
-          $_SESSION['logIn'] = 'true';
-          header('Refresh:0; riservata.php');
-          exit;
-        } else {
-          $passwordEr = "Password sbagliata.";
-        }
-      } else {
-        $usernameEr = "Username sbagliato.";
-      }
-    }
-  }
+  if(isset($_SESSION['logIn']) || !empty($_SESSION['logIn']) ) {
 ?>
-<form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-  <label for="username" type="testo" class="titoletto">Username</label><br>
-  <input type="text" id="username" name="username" value="<?php echo $username; ?>" placeholder="Inserisci un username" class="tasto">
-  <span class="errore">
-    <font color="red"><?php echo $usernameEr; ?></font>
-  </span><br><br>
-
-  <label for="password" type="testo" class="titoletto">Password</label><br>
-  <input type="password" id="password" name="password" value="<?php echo $password; ?>" placeholder="Inserisci la password" class="tasto">
-  <span class="errore">
-    <font color="red"><?php echo $passwordEr; ?></font>
-  </span><br><br>
-
-  <input type="submit" name="submit" value="Login"><br><br>
+  <p><h1>Sei già autenticato!</h1></p><br>
 
   <a href="index.php">Vai alla home del sito</a><br>
-</form>
+  <a href="riservata.php">Vai all'area riservata del sito</a>
+<?php
+  } else {
+    // Variabili errore
+    $usernameEr = $passwordEr = '';
+
+    // Variabili dati
+    $username = $password = '';
+
+    // --
+    $coutUs = $coutPs = '';
+
+    if(isset($_POST['submit'])) {
+      // Funzioni
+      $coutUs = checkUsername($username, $usernameEr, $_POST['username']);
+      $coutPs = checkPassword($password, $passwordEr, $_POST['password']);
+
+      if($coutUs == 1 && $coutPs == 1) {
+        if($_POST['username'] == 'Marco') {
+          $usernameEr = '';
+          if($_POST['password'] == 'Prova_01') {
+            $passwordEr = '';
+            $_SESSION['username'] = $_POST['username'];
+            $_SESSION['logIn'] = 'true';
+            header('Refresh:0; riservata.php');
+            exit;
+          } else {
+            $passwordEr = "Password sbagliata.";
+          }
+        } else {
+          $usernameEr = "Username sbagliato.";
+        }
+      }
+    }
+?>
+  <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+    <label for="username" type="testo" class="titoletto">Username</label><br>
+    <input type="text" id="username" name="username" value="<?php echo $username; ?>" placeholder="Inserisci un username" class="tasto">
+    <span class="errore">
+      <font color="red"><?php echo $usernameEr; ?></font>
+    </span><br><br>
+
+    <label for="password" type="testo" class="titoletto">Password</label><br>
+    <input type="password" id="password" name="password" value="<?php echo $password; ?>" placeholder="Inserisci la password" class="tasto">
+    <span class="errore">
+      <font color="red"><?php echo $passwordEr; ?></font>
+    </span><br><br>
+
+    <input type="submit" name="submit" value="Login"><br><br>
+
+    <a href="index.php">Vai alla home del sito</a><br>
+  </form>
+<?php
+  }
+?>
 </body>
 </html>
