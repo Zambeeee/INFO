@@ -15,7 +15,7 @@
     <p>Clicca qui per <a href="register.html">Registrati</a></p>
     <?php } else { ?>
     <h1>Area privata</h1>
-    <?php echo "Ciao" . $_SESSION["username"]; ?>
+    <?php echo "Ciao " . $_SESSION["username"]; ?>
     <a href="logout.php">Logout</a>
     <?php } ?>
 </body>
