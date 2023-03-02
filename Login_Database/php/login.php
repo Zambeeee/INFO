@@ -22,9 +22,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['id'] = $row['id'];
             $_SESSION['username'] = $row['username'];
             //header("location: ../riservata.php");
+            ?> 
+            <p>vai alla pagina <a href="../riservata.php">Riservata</a></p>
+            <?php
 
         } else {
             echo "Non ci sono account con quello username";
+            ?>
+            <p>Non hai ancora un account? <a href="../register.html">Registrati</a></p>
+            <p>Torna alla <a href="../index.php">Home</a></p>
+            <p>Hai già un account? <a href="../login.html">Login</a></p>
+            <?php
         }
     } else {
         echo "Errore in fase di login";
